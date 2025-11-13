@@ -7,7 +7,9 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "migrate": "ts-node src/migrations/migrate.ts"
+    "migrate": "ts-node src/migrations/migrate.ts",
+    "migrate:prod": "node dist/migrations/migrate.js",
+    "start:prod": "npm run migrate:prod && npm start"
   },
   "keywords": [],
   "author": "",
