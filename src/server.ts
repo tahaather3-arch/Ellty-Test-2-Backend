@@ -22,13 +22,10 @@ app.get('/health', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/calculations', calculationRoutes);
 
-// Serve static files from frontend in production
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('../frontend/dist'));
-  app.get('*', (req, res) => {
-    res.sendFile('index.html', { root: '../frontend/dist' });
-  });
-}
+// 404 handler for API routes
+app.use('/api/*', (req, res) => {
+  res.status(404).json({ error: 'API endpoint not found' });
+});
 
 // Start server
 const startServer = async () => {
